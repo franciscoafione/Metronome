@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Metronome</title>
+</head>
+<body>
+    <div class="container">
+        <div class="metronome">
+            <div class="bpm-display">
+                <span class="tempo">120</span>
+                <span class="bpm">BPM</span>
+            </div>
+
+            <div class="tempo-text">Allegro</div>
+            <div class="tempo-settings">
+                <div class="adjust-tempo-btn decrease-tempo">-</div>
+                <input type="range" min="20" max="270" step="1" class="slider">
+                <div class="adjust-tempo-btn increase-tempo">+</div>
+            </div>
+            <div class="start-stop">START</div>
+            <div class="measures">
+                <div class="substract-beats stepper">-</div>
+                <div class="measure-count">4</div>
+                <div class="add-beats stepper">+</div>
+            </div>
+            <spam class="beats-per-measure-text">Beats per measure</spam>
+        </div>
+    </div>
+
+
+    <script src="main.js"></script>
+</body>
+</html>
