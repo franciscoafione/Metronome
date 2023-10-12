@@ -51,6 +51,7 @@ addBeats.addEventListener('click', () =>{
 function updateMetronome(){
     tempoDisplay.textContent = bpm;
     tempoSlider.value = bpm;
+    metronome.timeInterval = 60000 / bpm;
     updateTempoText();
 }
 function validateTempo(){
