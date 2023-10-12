@@ -1,3 +1,5 @@
+import Timer from "./timer.js";
+
 const tempoDisplay = document.querySelector('.tempo');
 const tempoText = document.querySelector('.tempo-text');
 const decreaseTempoBtn = document.querySelector('.decrease-tempo');
@@ -8,8 +10,14 @@ const substractBeats = document.querySelector('.substract-beats');
 const addBeats = document.querySelector('.add-beats');
 const measureCount = document.querySelector('.measure-count');
 
+const click1 = new Audio('click1.mp3');
+const click2 = new Audio('click2.mp3');
+
+
 let bpm = 120;
 let beatsPerMeasure = 4;
+let count = 0;
+let isRunning = false;
 let tempoTextString = 'Allegro';
 
 decreaseTempoBtn.addEventListener('click', ()=>{
@@ -50,6 +58,19 @@ function validateTempo(){
     if (bpm >=270) {return};
 }
 
+startStopBtn.addEventListener('click', () =>{
+    count = 0;
+    if(!isRunning){
+        metronome.start();
+        isRunning = true;
+        startStopBtn.textContent = 'STOP';
+    } else {
+        metronome.stop();
+        isRunning = false;
+        startStopBtn.textContent = 'START';
+    }
+})
+
 function updateTempoText(){
     if(bpm <= 40) {tempoTextString = "Grave"};
     if(bpm > 40 && bpm < 50) {tempoTextString = "Lento"};
@@ -66,3 +87,21 @@ function updateTempoText(){
     
     tempoText.textContent = tempoTextString;
 }
+
+function playClick() {
+    console.log(count);
+    if (count >= beatsPerMeasure){
+        count = 0;
+    }
+
+    if (count === 0){
+        click1.play();
+        click1.currentTime = 0;
+    } else {
+        click2.play();
+        click2.currentTime = 0;
+    }
+    count++;
+}
+
+const metronome = new Timer (playClick, 60000 / bpm, {immediate: true});
